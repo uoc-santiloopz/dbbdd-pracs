@@ -51,3 +51,85 @@ INITIAL nn
 [ PCTINCREASE nn ]
 [ OPTIMAL nn ]
 ```
+
+### Index creation example
+```
+CREATE INDEX indexDepName
+ON Employees (departmentId) TABLESPACE users_ind;
+```
+
+### Restrictions
+
+#### Check
+```
+CREATE TABLE Employees (
+name VARCHAR2 (30),
+salary NUMBER CHECK (salary> 0)
+) TABLESPACE data_employees;
+```
+
+#### Not Null
+```
+CREATE TABLE Employees (
+name VARCHAR2 (30) NOT NULL,
+salary NUMBER
+) TABLESPACE data_employees;
+```
+
+#### Unique
+```
+cas d’Espanya), que ha de ser únic per a cada persona.
+CREATE TABLE Employees (
+id VARCHAR2 (9) UNIQUE,
+name VARCHAR2 (30) NOT NULL,
+salary NUMBER
+) TABLESPACE data_employees;
+```
+
+#### Foreign key
+```
+CREATE TABLE Department
+( id NUMBER PRIMARY KEY
+name VARCHAR2 (50)
+) TABLESPACE data_departments;
+CREATE TABLE Employees
+( id VARCHAR2 (9) UNIQUE,
+name VARCHAR2 (30) NOT NULL,
+salary NUMBER,
+departId NUMBER,
+CONSTRAINT fkDep FOREIGN KEY (departId) REFERENCES Department (id)
+) TABLESPACE data_employees;
+```
+
+### Virtual Space creation
+In Oracle is named `tablespace`
+```
+CREATE TABLESPACE table_space_name
+DATAFILE < filespec > [ ,...n ]
+DEFAULT STORAGE < storage_clause >
+< filespec > ::=
+'file_name'
+[ SIZE nn ]
+< storage_clause > ::=
+INITIAL nn
+[ NEXT nn ]
+[ MINEXTENTS nn ]
+[ MAXEXTENTS nn ]
+[ PCTINCREASE nn ]
+[ OPTIMAL nn ]
+[ ..... ]
+```
+
+### Create Database
+```
+CREATE DATABASE database_name
+[ CONTROLFILE REUSE ]
+[ LOGFILE < filespec > [ ,...n ] ]
+[ MAXLOGFILES nn ]
+[ MAXLOGMEMBERS nn ]
+[ MAXLOGHISTORY nn ]
+[ DATAFILE < filespec > [ ,...n ] ]
+[ MAXDATAFILES nn ]
+[ MAXINSTANCES nn ]
+[ CHARACTER SET charset ]
+```
